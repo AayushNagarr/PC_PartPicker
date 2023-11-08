@@ -52,7 +52,7 @@ Home() {
         </button>
       </div>
 
-      {isLoggedIn && <div>Hello World!</div>}
+      {isLoggedIn && <div>Hello Wworld!</div>}
     </div>
   );
 }
