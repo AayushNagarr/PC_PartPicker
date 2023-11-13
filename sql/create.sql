@@ -1,6 +1,8 @@
+
+
 CREATE DATABASE pc;
 \c pc;
-
+\i users.sql
 \i case-accessory.sql
 \i case-fan.sql
 \i case.sql
