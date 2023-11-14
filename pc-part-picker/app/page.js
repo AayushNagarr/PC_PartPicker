@@ -1,10 +1,10 @@
+'use client';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
-"use client";
 
 export default function Home() {
-  const router = useRouter();
+  // const router = useRouter();
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div>
-      {/* Your component content goes here */}
+      {/* Your component content goes here
       <form onSubmit={handleLogin}>
         <label>
           Username:
@@ -45,7 +45,8 @@ export default function Home() {
         </label>
         <br />
         <button type="submit">Login</button>
-      </form>
+      </form> */}
+      Home
     </div>
   );
 }
