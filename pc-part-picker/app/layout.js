@@ -16,15 +16,17 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
+        <nav className = "bg-white border-2 text-black from-stone-700 to-green-600">
           {!!session && 
             <Logout/>
           }
           {
             !session &&
+            
             <Link href = "/login">
               Login
               </Link>
+              
           }
           </nav>
         {children}</body>
