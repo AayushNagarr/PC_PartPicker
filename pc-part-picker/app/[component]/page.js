@@ -34,11 +34,11 @@ const ComponentPage = () => {
     ? componentData.map((part, index) => (
         <PartCard key={index} name={part.name} price={part.price} />
       ))
-    : null;
+    : <h1>Loading...</h1>;
 
   // const id = query.id;
   return (
-     <div>{renderedComponents}hi</div>
+     <div>{renderedComponents}</div>
 
   );
 }
