@@ -2,6 +2,7 @@
 import { useRouter, usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import fetch from 'node-fetch';
+import PartCard from '../components/part';
 
 
 const ComponentPage = () => {
@@ -28,13 +29,16 @@ const ComponentPage = () => {
     fetchData();
   }, [pathname]); // Execute the fetchData function whenever the pathname changes
 
-  console.log("data",componentData)
+  console.log("data",componentData);
+  const renderedComponents = Array.isArray(componentData)
+    ? componentData.map((part, index) => (
+        <PartCard key={index} name={part.name} price={part.price} />
+      ))
+    : null;
 
   // const id = query.id;
   return (
-    <div>
-    <h1>Component: {pathname}</h1>
-    </div>
+     <div>{renderedComponents}hi</div>
 
   );
 }
