@@ -28,13 +28,12 @@ const ComponentPage = () => {
     fetchData();
   }, [pathname]); // Execute the fetchData function whenever the pathname changes
 
+  console.log("data",componentData)
 
   // const id = query.id;
-  console.log("path:",pathname)
   return (
     <div>
     <h1>Component: {pathname}</h1>
-    {console.log("data",componentData)}
     </div>
 
   );
