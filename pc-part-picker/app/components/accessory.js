@@ -10,7 +10,7 @@ const AccessoryCard = ({ name, description, path }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4" onClick={handleClick}>
+    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-xl m-4" onClick={handleClick}>
       <div className="md:flex">
         <div className="md:flex-shrink-0">
           <img
