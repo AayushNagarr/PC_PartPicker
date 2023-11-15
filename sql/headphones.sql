@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "headphones" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "type" text,
   "frequency_response" json NULL,
@@ -2735,4 +2735,12 @@ INSERT INTO "headphones" VALUES
 ('TAKSTAR FLIT',NULL,'Circumaural','[20.0,20.0]',TRUE,FALSE,'Closed','Black / Red'),
 ('TAKSTAR HD2000',NULL,'Circumaural','[10.0,25.0]',FALSE,FALSE,'Closed','Black'),
 ('Yenkee YHP 3035 SHADOW',NULL,'Circumaural','[20.0,20.0]',TRUE,FALSE,'Closed','Black'),
-('Focal Clear',NULL,'Circumaural','[5.0,28.0]',FALSE,FALSE,'Open','Gray');
+('Focal Clear',NULL,'Circumaural','[5.0,28.0]',FALSE,FALSE,'Open','Gray')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+
+
+ALTER TABLE "headphones" ADD CONSTRAINT unique_headphones UNIQUE (name)

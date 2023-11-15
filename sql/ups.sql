@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "ups" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "capacity_w" bigint NULL,
   "capacity_va" bigint NULL
@@ -683,4 +683,10 @@ INSERT INTO "ups" VALUES
 ('APC SU3000RMTX136',NULL,2250,3000),
 ('CyberPower GX1325U',219.99,810,1325),
 ('APC BR1500MS',NULL,900,1500),
-('APC Back-UPS Pro 1375VA',NULL,810,1375);
+('APC Back-UPS Pro 1375VA',NULL,810,1375)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+ALTER TABLE "ups" ADD CONSTRAINT unique_ups UNIQUE (name)

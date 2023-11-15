@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "speaker" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "configuration" double precision,
   "wattage" double precision NULL,
@@ -266,4 +266,10 @@ INSERT INTO "speaker" VALUES
 ('SteelSeries Arena 3 SK',NULL,2,NULL,'[50,20]','Black'),
 ('SteelSeries Arena 7 EU',NULL,2.1,NULL,'[35,20]','Black'),
 ('SteelSeries Arena 7 JP',NULL,2.1,NULL,'[35,20]','Black'),
-('SteelSeries Arena 9 JP',NULL,5.1,NULL,'[35,20]','Black');
+('SteelSeries Arena 9 JP',NULL,5.1,NULL,'[35,20]','Black')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+ALTER TABLE "speaker" ADD CONSTRAINT unique_speaker UNIQUE (name)

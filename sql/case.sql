@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "case" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "type" text,
   "color" text NULL,
@@ -5352,4 +5352,12 @@ INSERT INTO "case" VALUES
 ('Noua Utopia F4',NULL,'ATX Mid Tower','Black',NULL,'Tempered Glass',0,2),
 ('Noua Thor S15',NULL,'ATX Mid Tower','Black',NULL,'Tempered Glass',0,3),
 ('GAMDIAS NESO P1',NULL,'MicroATX Mini Tower','Black / White',NULL,'Tempered Glass',0,5),
-('GAMDIAS NESO P1',NULL,'MicroATX Mini Tower','Black / Red',NULL,'Tempered Glass',0,5);
+('GAMDIAS NESO P1',NULL,'MicroATX Mini Tower','Black / Red',NULL,'Tempered Glass',0,5)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+
+ALTER TABLE "case" ADD CONSTRAINT unique_case UNIQUE (name)
+

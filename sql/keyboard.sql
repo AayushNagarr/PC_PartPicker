@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "keyboard" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "style" text,
   "switches" text NULL,
@@ -2803,4 +2803,11 @@ INSERT INTO "keyboard" VALUES
 ('Keychron K8 Aluminum Frame',NULL,'Standard','Gateron Brown Optical Hot-swappable',NULL,TRUE,'Wired, Bluetooth Wireless','Black / Gray'),
 ('Keychron K8 Aluminum Frame',NULL,'Standard','Keychron Red Optical Hot-swappable',NULL,TRUE,'Wired, Bluetooth Wireless','Black / Gray'),
 ('Keychron K8 Aluminum Frame',NULL,'Standard','Keychron Blue Optical Hot-swappable',NULL,TRUE,'Wired, Bluetooth Wireless','Black / Gray'),
-('Keychron K8 Aluminum Frame',NULL,'Standard','Keychron Brown Optical Hot-swappable',NULL,TRUE,'Wired, Bluetooth Wireless','Black / Gray');
+('Keychron K8 Aluminum Frame',NULL,'Standard','Keychron Brown Optical Hot-swappable',NULL,TRUE,'Wired, Bluetooth Wireless','Black / Gray')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+
+ALTER TABLE "keyboard" ADD CONSTRAINT unique_keyboard UNIQUE (name)

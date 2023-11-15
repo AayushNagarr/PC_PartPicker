@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "case-fan" (
-  "name" varchar,
+  "name" varchar PRIMARY KEY,
   "price" double precision NULL,
   "size" bigint,
   "color" varchar NULL,
@@ -2112,4 +2112,9 @@ INSERT INTO "case-fan" VALUES
 ('EK Quantum Impulse D-RGB',36.09,120,'Black / White','[400,1800]','57.5','24.3',TRUE),
 ('Thermaltake SWAFAN EX ARGB 3-Pack',99.98,140,'Black','[500,2000]','[79.3,81.6]','[34.5,38.8]',TRUE),
 ('Thermaltake SWAFAN GT12',NULL,120,'Black','[500,2000]','[54.71,58.17]','[26.5,29.8]',TRUE),
-('Thermaltake SWAFAN GT14',NULL,140,'Black','[500,2000]','[54.71,58.17]','[26.5,29.8]',TRUE);
+('Thermaltake SWAFAN GT14',NULL,140,'Black','[500,2000]','[54.71,58.17]','[26.5,29.8]',TRUE)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+ALTER TABLE "case-fan" ADD CONSTRAINT unique_case_fan UNIQUE (name)

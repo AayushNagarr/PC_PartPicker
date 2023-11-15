@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "fan-controller" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "channels" bigint,
   "channel_wattage" double precision NULL,
@@ -45,4 +45,13 @@ INSERT INTO "fan-controller" VALUES
 ('Aerocool X-Vision',NULL,5,0.008,FALSE,'5.25','Black'),
 ('Lamptron CW611-B',NULL,6,36,FALSE,'5.25',NULL),
 ('Lamptron FC-CM615-BK',NULL,6,15,FALSE,'5.25',NULL),
-('Silverstone FP59B',NULL,1,NULL,FALSE,'5.25','Black');
+('Silverstone FP59B',NULL,1,NULL,FALSE,'5.25','Black')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+ALTER TABLE "fan-controller" ADD CONSTRAINT unique_fan_controller UNIQUE (name)
+
+
+

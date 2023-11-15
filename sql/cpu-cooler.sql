@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "cpu-cooler" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "rpm" text NULL,
   "noise_level" text NULL,
@@ -2025,4 +2025,11 @@ INSERT INTO "cpu-cooler" VALUES
 ('Cooler Master GeminII M4',NULL,'[500,1600]','[8,30]',NULL,NULL),
 ('Thermaltake TOUGHAIR 710',NULL,'[300,1400]','[18.5,23.9]','Black',NULL),
 ('Thermaltake TOUGHLIQUID ARGB',NULL,'[500,2500]','28.1','Black','360'),
-('Cougar FORZA 85 ESSENTIAL',58.92,'[600,2000]','34.5','Black',NULL);
+('Cougar FORZA 85 ESSENTIAL',58.92,'[600,2000]','34.5','Black',NULL)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+ALTER TABLE "cpu-cooler" ADD CONSTRAINT unique_cpu_cooler UNIQUE (name)
+

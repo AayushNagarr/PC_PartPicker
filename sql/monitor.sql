@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "monitor" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "screen_size" double precision,
   "resolution" json,
@@ -4167,4 +4167,9 @@ INSERT INTO "monitor" VALUES
 ('Acer V226HQL Gbid',NULL,21.5,'[1920,1080]',75,NULL,'TN','16:9'),
 ('Acer 19CX1Q b',NULL,18.5,'[1366,768]',60,NULL,'TN','16:9'),
 ('Acer ET322QK Abmiipx',NULL,31.5,'[3840,2160]',60,NULL,'VA','16:9'),
-('Acer XZ322QU PBMIIPHX',NULL,31.5,'[1920,1080]',165,NULL,'VA','16:9');
+('Acer XZ322QU PBMIIPHX',NULL,31.5,'[1920,1080]',165,NULL,'VA','16:9')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+ALTER TABLE "monitor" ADD CONSTRAINT unique_monitor UNIQUE (name)

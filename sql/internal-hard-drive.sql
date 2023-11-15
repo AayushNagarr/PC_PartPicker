@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "internal-hard-drive" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "capacity" double precision,
   "price_per_gb" double precision NULL,
@@ -5533,3 +5533,8 @@ Product Series:ES.3',NULL,3000,NULL,'7200',128,'3.5','SATA 6.0 Gb/s'),
 ('Oyen Digital E12S-8000N28A',NULL,8000,NULL,'SSD',NULL,'M.2-2280','M.2 PCIe 3.0 X4'),
 ('Oyen Digital E13S-2242-2048PH',119,2000,0.06,'SSD',NULL,'M.2-2242','M.2 PCIe 3.0 X4'),
 ('Oyen Digital E13S-2242-1024PH',69,1000,0.069,'SSD',NULL,'M.2-2242','M.2 PCIe 3.0 X4');
+
+
+
+ALTER TABLE "internal-hard-drive" ADD CONSTRAINT unique_internal_hard_drive UNIQUE (name)
+

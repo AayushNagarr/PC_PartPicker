@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "webcam" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "resolutions" json,
   "connection" text,
@@ -70,4 +70,9 @@ INSERT INTO "video-card" VALUES
 ('Green Extreme T200 + Live Streaming Bundle',NULL,'["1080p"]','USB 2.0 Type-A','Auto','["Windows","OS X","Android"]',NULL),
 ('Avermedia HD Webcam 310',NULL,'["1080p","720p","480p"]','USB 2.0 Type-A','Auto','["Windows","OS X","Android"]',NULL),
 ('Adesso Cybertrack H4P',NULL,'["1080p"]','USB 2.0 Type-A','Manual','["Windows","OS X"]',78),
-('Wansview 102JD',NULL,'["1080p"]','USB 2.0 Type-A',NULL,'["Windows","OS X","Android"]',90);
+('Wansview 102JD',NULL,'["1080p"]','USB 2.0 Type-A',NULL,'["Windows","OS X","Android"]',90)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+ALTER TABLE "webcam" ADD CONSTRAINT unique_webcam UNIQUE (name)

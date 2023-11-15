@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "sound-card" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "channels" double precision,
   "digital_audio" bigint NULL,
@@ -87,3 +87,7 @@ INSERT INTO "sound-card" VALUES
 ('Turtle Beach TBS-3429',NULL,5.1,24,NULL,48,NULL,'PCI'),
 ('SIIG IC-510012-S2',NULL,5.1,16,68,NULL,NULL,'PCI'),
 ('SIIG IC-710012-S2',NULL,7.1,24,92,96,NULL,'PCI');
+
+
+
+ALTER TABLE "sound-card" ADD CONSTRAINT unique_name UNIQUE (name)

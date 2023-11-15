@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "wired-network-card" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "interface" text,
   "color" text NULL
@@ -134,4 +134,9 @@ INSERT INTO "wired-network-card" VALUES
 ('Lenovo 4X90E51405',23.83,'USB Type-A 3.2 Gen 1',NULL),
 ('SIIG CN-GP4111-S1',NULL,'PCIe x4',NULL),
 ('Syba SY-ADA24040',NULL,'USB Type-A 3.2 Gen 1',NULL),
-('V7 V7UCRJ45-BLK-1N',23.99,'USB Type-C 3.2 Gen 1','Black');
+('V7 V7UCRJ45-BLK-1N',23.99,'USB Type-C 3.2 Gen 1','Black')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+ALTER TABLE "wired-network-card" ADD CONSTRAINT unique_wired_network_card UNIQUE (name)

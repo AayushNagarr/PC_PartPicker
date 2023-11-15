@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "mouse" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "tracking_method" text,
   "connection_type" text NULL,
@@ -2324,4 +2324,9 @@ INSERT INTO "mouse" VALUES
 ('Zowie ZA13-B',NULL,'Optical','Wired',3200,'Right','Black'),
 ('ADATA XPG SLINGSHOT',NULL,'Optical','Wired',12000,'Right','White'),
 ('ADATA XPG SLINGSHOT',NULL,'Optical','Wired',12000,'Right','Pink'),
-('ADATA XPG SLINGSHOT Mera',NULL,'Optical','Wired',12000,'Right','Orange / Black');
+('ADATA XPG SLINGSHOT Mera',NULL,'Optical','Wired',12000,'Right','Orange / Black')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+ALTER TABLE "mouse" ADD CONSTRAINT unique_mouse UNIQUE (name)

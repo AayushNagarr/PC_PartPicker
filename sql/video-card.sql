@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "video-card" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "chipset" text,
   "memory" double precision,
@@ -5710,4 +5710,9 @@ INSERT INTO "video-card" VALUES
 ('XFX THICC III Pro',NULL,'Radeon RX 5700 XT',8,1605,1905,'Black',293),
 ('Asus DUAL',NULL,'GeForce GTX 1630',4,1740,1815,'Black / Silver',213),
 ('Gigabyte D6 Rev 2.0',NULL,'GeForce RTX 2060',6,1365,1680,'Black',226),
-('Gigabyte D6',NULL,'Radeon RX 5500 XT',4,1607,1845,'Black',225);
+('Gigabyte D6',NULL,'Radeon RX 5500 XT',4,1607,1845,'Black',225)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+ALTER TABLE "video-card" ADD CONSTRAINT unique_video_card UNIQUE (name)

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "memory" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "speed" text,
   "modules" json,
@@ -11350,4 +11350,10 @@ INSERT INTO "memory" VALUES
 ('TEAMGROUP Elite Plus 16 GB',NULL,'[4,3200]','[2,8]',NULL,'Red / Black',13.75,22),
 ('TEAMGROUP Elite Plus 8 GB',NULL,'[4,3200]','[2,4]',NULL,'Red / Black',13.75,22),
 ('TEAMGROUP T-Force Delta TUF Gaming Alliance RGB 32 GB',NULL,'[5,6000]','[1,32]',NULL,'Black',12.667,38),
-('TEAMGROUP T-Force Delta TUF Gaming Alliance RGB 16 GB',NULL,'[5,5200]','[1,16]',NULL,'Black',15.385,40);
+('TEAMGROUP T-Force Delta TUF Gaming Alliance RGB 16 GB',NULL,'[5,5200]','[1,16]',NULL,'Black',15.385,40)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+ALTER TABLE "memory" ADD CONSTRAINT unique_memory UNIQUE (name)

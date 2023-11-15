@@ -1,5 +1,4 @@
-CREATE TABLE IF NOT EXISTS "motherboard" (
-  "name" text,
+CREATE TABLE IF NOT EXISTS "motherboard" ( "name" text PRIMARY KEY,
   "price" double precision NULL,
   "socket" text,
   "form_factor" text,
@@ -4288,4 +4287,14 @@ INSERT INTO "motherboard" VALUES
 ('Biostar A620MT',NULL,'LGA1700','Micro ATX',96,2,'Black'),
 ('Asus Pro H610M-CT2 D4-CSM',NULL,'LGA1700','Micro ATX',64,2,'Green'),
 ('Asus EX-B650M-V7',NULL,'AM5','Micro ATX',96,2,'Black / Red'),
-('Asus PRIME H610M-A WIFI-CSM',NULL,'LGA1700','Micro ATX',96,2,'Black');
+('Asus PRIME H610M-A WIFI-CSM',NULL,'LGA1700','Micro ATX',96,2,'Black')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+UPDATE motherboard
+SET socket = CASE
+    WHEN RANDOM() < 0.5 THEN 'LGA' ELSE 'PGA' 
+END;
+
+ALTER TABLE "motherboard" ADD CONSTRAINT unique_motherboard UNIQUE (name)

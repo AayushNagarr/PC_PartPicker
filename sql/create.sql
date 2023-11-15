@@ -2,7 +2,6 @@
 
 CREATE DATABASE pc;
 \c pc;
-\i users.sql
 \i case-accessory.sql
 \i case-fan.sql
 \i case.sql
@@ -24,6 +23,7 @@ CREATE DATABASE pc;
 \i speaker.sql
 \i thermal-paste.sql
 \i ups.sql
+\i users.sql
 \i video-card.sql
 \i webcam.sql
 \i wired-network-card.sql

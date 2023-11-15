@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "case-accessory"  (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" text NULL,
   "type" text,
   "form_factor" double precision
@@ -13,4 +13,9 @@ INSERT INTO "case-accessory" VALUES
 ('NZXT Aperture M',NULL,'Card Reader',5.25),
 ('nMEDIAPC ZE-C668',NULL,'Card Reader',5.25),
 ('nMEDIAPC ZE-C288',NULL,'Card Reader',5.25),
-('Unitech U3903',NULL,'Card Reader',5.25);
+('Unitech U3903',NULL,'Card Reader',5.25)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+ALTER TABLE "case-accessory" ADD CONSTRAINT unique_case_accessory UNIQUE (name)

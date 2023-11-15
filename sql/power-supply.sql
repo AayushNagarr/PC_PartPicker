@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "power-supply" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "type" text,
   "efficiency" text NULL,
@@ -2730,4 +2730,10 @@ INSERT INTO "power-supply" VALUES
 ('Thortech Thunderbolt',NULL,'ATX','gold',1000,'Full',NULL),
 ('Apevia Astro',NULL,'ATX',NULL,500,'false','Black'),
 ('Topower TOP-900W',NULL,'ATX','plus',900,'Full',NULL),
-('Cougar A',NULL,'ATX','bronze',660,'false','Black');
+('Cougar A',NULL,'ATX','bronze',660,'false','Black')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+ALTER TABLE "power-supply" ADD CONSTRAINT unique_power_supply UNIQUE (name)

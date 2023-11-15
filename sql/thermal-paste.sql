@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "thermal-paste" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "amount" double precision
 );
@@ -147,4 +147,10 @@ INSERT INTO "thermal-paste" VALUES
 ('Iceberg Thermal FUZEIce Plus',NULL,7),
 ('Gelid Solutions GC-4',NULL,1),
 ('Gelid Solutions GC-Extreme',NULL,3.5),
-('Gelid Solutions GC-Extreme',NULL,10);
+('Gelid Solutions GC-Extreme',NULL,10)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+ALTER TABLE "thermal-paste" ADD CONSTRAINT unique_thermal_paste UNIQUE (name)

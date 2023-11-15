@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "cpu" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "core_count" bigint,
   "core_clock" double precision,
@@ -22,7 +22,6 @@ INSERT INTO "cpu" VALUES
 ('AMD Ryzen 7 7700X',342,8,4.5,5.4,105,'Radeon',TRUE),
 ('Intel Core i5-12600K',193.27,10,3.7,4.9,125,'Intel UHD Graphics 770',TRUE),
 ('AMD Ryzen 7 5800X3D',323.68,8,3.4,4.5,105,NULL,TRUE),
-('AMD Ryzen 5 3600',89.99,6,3.6,4.2,65,NULL,TRUE),
 ('Intel Core i7-12700K',275.99,12,3.6,5,125,'Intel UHD Graphics 770',TRUE),
 ('AMD Ryzen 7 5700X',198.21,8,3.4,4.6,65,NULL,TRUE),
 ('AMD Ryzen 5 7600',226.99,6,3.8,5.1,65,'Radeon',TRUE),
@@ -114,7 +113,6 @@ INSERT INTO "cpu" VALUES
 ('Intel Core i5-4690K',90,4,3.5,3.9,88,'Intel HD Graphics 4600',FALSE),
 ('Intel Core i7-6700',210,4,3.4,4,65,'Intel HD Graphics 530',TRUE),
 ('Intel Core i7-3770',140,4,3.4,NULL,77,'Intel HD Graphics 4000',TRUE),
-('AMD Ryzen 5 3600',NULL,6,3.6,4.2,65,NULL,TRUE),
 ('Intel Core i3-9100F',119.99,4,3.6,4.2,65,NULL,FALSE),
 ('Intel Core i7-10700',239,8,2.9,4.8,65,'Intel UHD Graphics 630',TRUE),
 ('Intel Core i7-11700KF',263.99,8,3.6,5,125,NULL,TRUE),
@@ -175,7 +173,6 @@ INSERT INTO "cpu" VALUES
 ('AMD Ryzen 3 1200 (14nm)',115,4,3.1,3.4,65,NULL,FALSE),
 ('Intel Core i5-8500',165,6,3,4.1,65,'Intel UHD Graphics 630',FALSE),
 ('AMD Ryzen 5 7500F',NULL,6,3.7,5,65,NULL,TRUE),
-('AMD Ryzen 5 3600',95.99,6,3.6,4.2,65,NULL,TRUE),
 ('AMD Athlon 3000G (14nm)',139.66,2,3.5,NULL,35,'Radeon Vega 3',TRUE),
 ('AMD Ryzen 5 3500',NULL,6,3.6,4.1,65,NULL,FALSE),
 ('Intel Core i9-9900KS',1989,8,4,5,127,'Intel UHD Graphics 630',TRUE),
@@ -1353,4 +1350,19 @@ INSERT INTO "cpu" VALUES
 ('Intel Xeon E5-2603 V4',399.99,6,1.7,NULL,85,NULL,FALSE),
 ('Intel Celeron G3950',NULL,2,3,NULL,51,'Intel HD Graphics 610',FALSE),
 ('AMD A6-9550',NULL,2,3.8,4,65,'Radeon R5 (on die)',FALSE),
-('Intel Core i9-9820X',NULL,10,3.3,4.1,165,NULL,TRUE);
+('Intel Core i9-9820X',NULL,10,3.3,4.1,165,NULL,TRUE)
+ON CONFLICT (name)
+DO NOTHING;
+-- Add Socket column to your table
+ALTER TABLE cpu
+ADD Socket VARCHAR(3);
+
+-- Update Socket column based on the processor's brand
+UPDATE cpu
+SET Socket = CASE
+    WHEN name LIKE 'Intel%' THEN 'LGA'
+    WHEN name LIKE 'AMD%' THEN 'PGA'
+    ELSE NULL
+END;
+
+ALTER TABLE "cpu" ADD CONSTRAINT unique_cpu UNIQUE (name)

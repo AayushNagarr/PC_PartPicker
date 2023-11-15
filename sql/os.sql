@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "os" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "mode" text,
   "max_memory" bigint
@@ -67,4 +67,11 @@ INSERT INTO "os" VALUES
 ('Microsoft Windows 8.1 (32-bit)',NULL,'32',4),
 ('Microsoft Windows 8 Pro DE (64-bit)',NULL,'64',512),
 ('Microsoft Windows 8 Pro (32-bit)',NULL,'32',4),
-('Microsoft Windows 8.1 (32-bit)',NULL,'32',4);
+('Microsoft Windows 8.1 (32-bit)',NULL,'32',4)
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+
+ALTER TABLE "os" ADD CONSTRAINT unique_os UNIQUE (name)

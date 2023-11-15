@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "external-hard-drive" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "type" text,
   "interface" text NULL,
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS "external-hard-drive" (
   "color" text NULL
 );
 
-INSERT INTO "hard-drive" VALUES
+INSERT INTO "external-hard-drive" VALUES
 ('Western Digital My Book Duo',1609.98,'Desktop','USB Type-A 3.2 Gen 1, USB Type-C 3.2 Gen 1',36000,0.045,'Black'),
 ('Western Digital My Book Duo',829.99,'Desktop','USB Type-A 3.2 Gen 1, USB Type-C 3.2 Gen 1',24000,0.035,'Black'),
 ('Western Digital ELEMENTS',54.99,'Portable','USB Type-A 3.2 Gen 1',1000,0.055,NULL),
@@ -487,4 +487,10 @@ INSERT INTO "hard-drive" VALUES
 ('Crucial X10 Pro',119.99,'Portable','USB Type-C 3.2 Gen 2x2',1000,0.12,'Black'),
 ('Crucial X9 Pro',79.98,'Portable','USB Type-C 3.2 Gen 2',1000,0.08,'Silver'),
 ('Sabrent Rocket Nano V2',159.99,'Portable','USB Type-C 3.2 Gen 2x2',2000,0.08,'Black'),
-('Sabrent Rocket Nano V2',89.99,'Portable','USB Type-C 3.2 Gen 2x2',1000,0.09,'Black');
+('Sabrent Rocket Nano V2',89.99,'Portable','USB Type-C 3.2 Gen 2x2',1000,0.09,'Black')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+
+ALTER TABLE "external-hard-drive" ADD CONSTRAINT unique_external_hard_drive UNIQUE (name)

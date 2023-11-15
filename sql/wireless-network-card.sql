@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "wireless-network-card" (
-  "name" text,
+  "name" text PRIMARY KEY,
   "price" double precision NULL,
   "protocol" text,
   "interface" text,
@@ -345,4 +345,9 @@ INSERT INTO "wireless-network-card" VALUES
 ('Intel AX210 w/vPro',NULL,'Wi-Fi 6E','M.2 PCIe','Green'),
 ('Intel AX210',NULL,'Wi-Fi 6E','M.2 PCIe','Green'),
 ('Intel AX210 w/vPro',NULL,'Wi-Fi 6E','M.2 PCIe','Green'),
-('fenvi FV-2030T',NULL,'Wi-Fi 5','PCIe x1','Red');
+('fenvi FV-2030T',NULL,'Wi-Fi 5','PCIe x1','Red')
+ON CONFLICT (name)
+DO NOTHING;
+
+
+ALTER TABLE "wireless-network-card" ADD CONSTRAINT unique_wireless_network_card UNIQUE (name)
