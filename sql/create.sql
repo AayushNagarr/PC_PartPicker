@@ -18,6 +18,7 @@ CREATE DATABASE pc;
 \i motherboard.sql
 \i mouse.sql
 \i os.sql
+\i pc-parts.sql
 \i power-supply.sql
 \i sound-card.sql
 \i speaker.sql
