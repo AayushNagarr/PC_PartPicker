@@ -2,15 +2,15 @@
 
 CREATE DATABASE pc;
 \c pc;
-\i case-accessory.sql
-\i case-fan.sql
+\i case_accessory.sql
+\i case_fan.sql
 \i case.sql
-\i cpu-cooler.sql
+\i cpu_cooler.sql
 \i cpu.sql
-\i external-hard-drive.sql
-\i fan-controller.sql
+\i external_hard_drive.sql
+\i fan_controller.sql
 \i headphones.sql
-\i internal-hard-drive.sql
+\i internal_hard_drive.sql
 \i keyboard.sql
 \i ls.txt
 \i memory.sql
@@ -18,14 +18,14 @@ CREATE DATABASE pc;
 \i motherboard.sql
 \i mouse.sql
 \i os.sql
-\i pc-parts.sql
-\i power-supply.sql
-\i sound-card.sql
+\i pc_parts.sql
+\i power_supply.sql
+\i sound_card.sql
 \i speaker.sql
-\i thermal-paste.sql
+\i thermal_paste.sql
 \i ups.sql
 \i users.sql
-\i video-card.sql
+\i video_card.sql
 \i webcam.sql
-\i wired-network-card.sql
-\i wireless-network-card.sql
+\i wired_network_card.sql
+\i wireless_network_card.sql
