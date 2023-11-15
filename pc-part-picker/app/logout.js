@@ -2,7 +2,7 @@
 import {signOut} from 'next-auth/react';
 export default function Logout(){
     return(
-        <span onClick = {() =>{
+        <span className = "px-10" onClick = {() =>{
             signOut();
         }}>
             Logout
