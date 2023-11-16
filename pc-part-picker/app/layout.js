@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Logout from './logout'
 const inter = Inter({ subsets: ['latin'] })
 
-import {Provider} from "./components/provider"
+import Providers from "./components/provider"
 
 
 export const metadata = {
@@ -16,10 +16,11 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-  const session = await getServerSession();
+  const session = true;
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Providers>
         <nav className = "bg-white border-2 text-black from-stone-700 to-green-600">
           {!!session && 
             <Logout/>
@@ -47,6 +48,7 @@ export default async function RootLayout({ children }) {
           }
           </nav>
         {children}
+        </Providers>
     </body>
     </html>
   );

@@ -1,10 +1,9 @@
-'use-client';
+"use client"
 
 import {SessionProvider} from "next-auth/react"
 
-const Provider = ({children}) =>{
-    <SessionProvider>
-    return {children}</SessionProvider>
+const Providers = ({children}) =>{
+    return <SessionProvider>{children}</SessionProvider>
 }
 
-export default Provider
+export default Providers;
