@@ -1,40 +1,39 @@
-import pool from '../../../../lib/db';
-// Import necessary libraries
-// Define the handler function for the /api/user endpoint
-export default async (req, res) => {
-  if (req.method === 'POST') {
-    const { UserID } = req.body;
+import { NextResponse } from 'next/server'
+import pool from '../../../lib/db';
 
-    try {
-      // Connect to the database
-      const client = await pool.connect();
+export async function POST(request) {
+  const body = await request.json()
+  const { UserID } = body
 
-      // Query to get user information by username
-      const query = 'SELECT * FROM users WHERE username = $1';
-      const values = [UserID];
-      const result = await client.query(query, values);
+  try {
+    console.log("Hello");
+    // Connect to the database
+    const client = await pool.connect();
 
-      // Check if the user exists
-      if (result.rows.length > 0) {
-        const user = result.rows[0];
-        // Return the user data excluding sensitive information (e.g., password)
-        res.status(200).json({
-          UserID: user.UserID,
-          // Add other user properties you want to include
-        });
-      } else {
-        // User not found
-        res.status(404).json({ Error: 'User not found' });
-      }
+    // Query to get user information by username
+    const query = 'SELECT password FROM users WHERE username = $1';
+    const values = [UserID];
+    const result = await client.query(query, values);
+    console.log(result.rows[0].password);
 
-      // Release the database connection
-      client.release();
-    } catch (error) {
-      console.error('Error in /api/user:', error);
-      res.status(500).json({ Error: 'Internal Server Error' });
+    // Check if the user exists
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      // Return the user data excluding sensitive information (e.g., password)
+      return NextResponse.json({
+        username: UserID,
+        password: user.password,
+        // Add other user properties you want to include
+      }, { status: 200 });
+    } else {
+      // User not found
+      return NextResponse.json({ Error: 'User not found' }, { status: 404 });
     }
-  } else {
-    // Unsupported HTTP method
-    res.status(405).end();
+
+    // Release the database connection
+    client.release();
+  } catch (error) {
+    console.error('Error in /api/user:', error);
+    return NextResponse.json({ Error: 'Internal Server Error' }, { status: 500 });
   }
-};
+}

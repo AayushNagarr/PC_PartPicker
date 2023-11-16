@@ -31,7 +31,9 @@ export default function Form(){
       return;
     }
 
-    const result = await signIn('credentials', { username, password , callbackUrl:'/dashboard'})
+    const result = await signIn('credentials', {username, password , callbackUrl:'/dashboard'})
+    console.log("In login form")
+    console.log("In login form",result)
     //clear password reference
     passwordRef.current.value = "";
 

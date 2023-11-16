@@ -1,39 +1,45 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from 'bcryptjs';
+import {compare} from 'bcrypt';
+import { NextResponse } from 'next/server';
 
 export const authOptions= {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: { label: "Username", type: "text" },
-        password: {  label: "Password", type: "password" }
+        username: { label: "username", type: "text" },
+        password: {  label: "password", type: "password" }
       },
       authorize: async (credentials) => {
-        const response = await fetch('/api/user', {
+        const response = await fetch('http://localhost:3000/api/user', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ UserID: credentials.username })
         });
-
+        console.log("THIS IS THE API/USERS RESPONSE", response);
+        
         if (!response.ok) {
           throw new Error("Response is not OK");
         }
-
+        
         const data = await response.json();
+        console.log("received username credential ", credentials.username);
+        console.log("THIS IS DATA FROM RESPONSE", data, "thiS IS our password", credentials.password);
 
         if (data.Error) {
+          console.log("ERRRRRORRRR");
           throw new Error(data.Error);
         }
-
-        const isMatch = await bcrypt.compare(credentials.password, data.HashedPassword);
-        console.log(isMatch)
+        
+        const isMatch = await compare(credentials?.password || '', data.password);
+        console.log("MATCHHHHHHHHHHHHHHHHHHHHHH",isMatch)
 
         if (isMatch) {
-          const user = { id: 1, username: credentials.username }
+          const user = {id: 1, username: credentials.username }
+          console.log("Next auth user", user.username);
           return user
         } else {
           return null

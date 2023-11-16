@@ -1,5 +1,8 @@
 // import pool from '../../../lib/db';
+'use client';
 import AccessoryCard from '../components/accessory';
+import { useSession } from 'next-auth/react';
+
 
 const components = ['case_accessory', 'case_fan', 'cases', 'cpu_cooler',
 'cpu', 'external_hard_drive', 'fan_controller', 'headphones',
@@ -37,7 +40,6 @@ const componentCardMap = {
   };
 
 export default function Dashboard(){
-
 
 
          return (

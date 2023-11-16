@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import fetch from 'node-fetch';
 import PartCard from '../components/partCard';
 import Modal from 'react-modal'
+import {useSession} from "next-auth/react"
 
 
 const ComponentPage = () => {
@@ -13,27 +14,23 @@ const ComponentPage = () => {
   const router = useRouter(); let pathname = usePathname();
   pathname = pathname.substring(1,pathname.length);
 
-  const handleSubmitNew = async (event) => {
-    event.preventDefault()
-    const response = await fetch('/api/rest', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({  }),
-    })
-    const data = await response.json()
-    if (data.error) {
-      alert(data.error)
-    } else {
-      setComponentData([...data])
-      setIsModalOpen(false)
-    }
+  const t = useSession();
+  const { data: session, status } = t;
+  if (status === "authenticated") {
+    console.log(`Signed in as ${JSON.stringify(t)}`);
   }
+
+  
 
   const handleAddToCart = ()=>
   {
     console.log("In handleAddToCart");
     setModalOpen(false);
   }
+
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,7 +59,8 @@ const ComponentPage = () => {
   // const id = query.id;
   return (
      <div>
-    {renderedComponents}
+      
+    {session && renderedComponents}
  
       <Modal 
           isOpen={modalOpen} 
