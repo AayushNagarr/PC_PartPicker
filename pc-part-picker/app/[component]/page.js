@@ -32,7 +32,7 @@ const ComponentPage = () => {
   console.log("data",componentData);
   const renderedComponents = Array.isArray(componentData)
     ? componentData.map((part, index) => (
-        <PartCard key={index} name={part.name} price={part.price} />
+        <PartCard key={index} name={part.part_name} price={part.price} />
       ))
     : <h1>Loading...</h1>;
 

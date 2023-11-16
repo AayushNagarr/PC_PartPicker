@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS "case_accessory"  (
   "name" text PRIMARY KEY,
-  "price" text NULL,
+  "price" double precision NULL,
   "type" text,
   "form_factor" double precision
 );

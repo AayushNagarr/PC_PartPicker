@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "case" (
+CREATE TABLE IF NOT EXISTS "cases" (
   "name" text PRIMARY KEY,
   "price" double precision NULL,
   "type" text,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS "case" (
   "internal_35_bays" bigint
 );
 
-INSERT INTO "case" VALUES
+INSERT INTO "cases" VALUES
 ('Corsair 4000D Airflow',89.99,'ATX Mid Tower','Black',NULL,'Tinted Tempered Glass',0,2),
 ('NZXT H5 Flow',94.99,'ATX Mid Tower','Black',NULL,'Tempered Glass',0,1),
 ('Deepcool CC560',59.99,'ATX Mid Tower','Black',NULL,'Tempered Glass',0,2),
@@ -5359,5 +5359,5 @@ DO NOTHING;
 
 
 
-ALTER TABLE "case" ADD CONSTRAINT unique_case UNIQUE (name)
+ALTER TABLE "cases" ADD CONSTRAINT unique_case UNIQUE (name)
 

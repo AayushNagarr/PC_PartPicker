@@ -4,7 +4,7 @@ CREATE DATABASE pc;
 \c pc;
 \i case_accessory.sql
 \i case_fan.sql
-\i case.sql
+\i cases.sql
 \i cpu_cooler.sql
 \i cpu.sql
 \i external_hard_drive.sql
@@ -12,13 +12,11 @@ CREATE DATABASE pc;
 \i headphones.sql
 \i internal_hard_drive.sql
 \i keyboard.sql
-\i ls.txt
 \i memory.sql
 \i monitor.sql
 \i motherboard.sql
 \i mouse.sql
 \i os.sql
-\i pc_parts.sql
 \i power_supply.sql
 \i sound_card.sql
 \i speaker.sql
@@ -29,3 +27,5 @@ CREATE DATABASE pc;
 \i webcam.sql
 \i wired_network_card.sql
 \i wireless_network_card.sql
+
+\i pc_parts.sql
