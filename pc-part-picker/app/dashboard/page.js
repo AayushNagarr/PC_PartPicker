@@ -1,7 +1,7 @@
 // import pool from '../../../lib/db';
 import AccessoryCard from '../components/accessory';
 
-const components = ['case_accessory', 'case_fan', 'case', 'cpu_cooler',
+const components = ['case_accessory', 'case_fan', 'cases', 'cpu_cooler',
 'cpu', 'external_hard_drive', 'fan_controller', 'headphones',
  'internal_hard_drive', 'keyboard', 'memory', 'monitor',
   'motherboard', 'mouse', 'os', 'power_supply', 'sound_card',
@@ -12,7 +12,7 @@ const components = ['case_accessory', 'case_fan', 'case', 'cpu_cooler',
 const componentCardMap = {
     'case_accessory': { name: 'Case Accessory', description: 'Description for Case Accessory', path: '/case_accessory' },
     'case_fan': { name: 'Case Fan', description: 'Description for Case Fan', path: '/case_fan' },
-    'case': { name: 'Computer Case', description: 'Description for Computer Case', path: '/case' },
+    'cases': { name: 'Computer Case', description: 'Description for Computer Case', path: '/cases' },
     'cpu_cooler': { name: 'CPU Cooler', description: 'Description for CPU Cooler', path: '/cpu_cooler' },
     'cpu': { name: 'CPU', description: 'Description for CPU', path: '/cpu' },
     'external_hard_drive': { name: 'External Hard Drive', description: 'Description for External Hard Drive', path: '/external_hard_drive' },

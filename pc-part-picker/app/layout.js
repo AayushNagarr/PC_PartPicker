@@ -1,10 +1,14 @@
-import { Inter } from 'next/font/google'
+'use-client';
+
 import './globals.css'
+import { Inter } from 'next/font/google'
 import {getServerSession} from 'next-auth'
 import Link from 'next/link'
 import Logout from './logout'
-
 const inter = Inter({ subsets: ['latin'] })
+
+import {Provider} from "./components/provider"
+
 
 export const metadata = {
   title: 'Create Next App',
@@ -42,7 +46,8 @@ export default async function RootLayout({ children }) {
               
           }
           </nav>
-        {children}</body>
+        {children}
+    </body>
     </html>
-  )
+  );
 }

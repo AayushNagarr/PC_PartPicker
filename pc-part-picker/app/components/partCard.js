@@ -2,15 +2,11 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-const PartCard = ({name, price}) => {
+const PartCard = ({onclick, name, price}) => {
   const router = useRouter();
 
-  const handleClick = () => {
-        console.log("Clicked", name);
-  };
-
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-xl m-4" onClick={handleClick}>
+    <div onClick = {onclick} className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-xl m-4" >
       <div className="md:flex">
         <div className="md:flex-shrink-0">
           {/* <img
