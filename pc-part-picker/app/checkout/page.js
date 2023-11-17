@@ -12,6 +12,28 @@ const Checkout = () => {
     pathname = pathname.substring(1,pathname.length);
     const [total, setTotal] = useState(0);
 
+    const handleDeleteCart = async ()=>
+    {
+        if (!session) {
+            return; // Do nothing if session is not defined
+        }
+        
+        event.preventDefault()
+        const response = await fetch('/api/delete-cart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({}),
+        })
+        const data = await response.json()
+        if (data.error) {
+            alert(data.error)
+        } else {
+            console.log("SUCCESS");
+            
+            
+        }
+        setTotal(0);
+  }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,7 +46,8 @@ const Checkout = () => {
           });
     
           const data = await response.json();
-          setTotal(data); // Store the fetched data in the state variable
+          setTotal(data);
+          console.log(data); // Store the fetched data in the state variable
         };
         
         fetchData();
@@ -33,8 +56,9 @@ const Checkout = () => {
     return (
         <div>Checkout
 
-        <h1> Total : {total[0].total_price}</h1>
-        {console.log(total[0].total_price)}
+        <h1> Total : {total.total_price}</h1>
+        {console.log(total.total_price)}
+        <button onClick = {handleDeleteCart}> BUY </button>
     </div>
   )
 }
