@@ -4,9 +4,12 @@ import pool from '../../../lib/db';
 
 export async function POST(request) {
   try {
-    const { cartItem, user } = await request.json();
+    const { user, component } = await request.json();
     const client = await pool.connect();
-    const insertQuery = `INSERT INTO carts (part_name, price) VALUES (SELECT ID FROM USERS WHERE username = ${user.username}, '${cartItem.name}', '${cartItem.price}') RETURNING *`;
+    const insertQuery = `INSERT INTO carts (user_id, product_id)
+    SELECT id, ${component.id}
+    FROM users
+    WHERE username = '${user}';`;
     const  result  = await client.query(insertQuery);
     const items = result.rows;
     client.release();

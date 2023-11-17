@@ -16,17 +16,37 @@ const ComponentPage = () => {
 
   const t = useSession();
   const { data: session, status } = t;
-  if (status === "authenticated") {
-    console.log(`Signed in as ${JSON.stringify(t)}`);
-  }
-
   
-
-  const handleAddToCart = ()=>
+  
+  
+  console.log("MY USERNAME IS ", session.user.username);
+  
+  const handleAddToCart = async ()=>
   {
-    console.log("In handleAddToCart");
-    setModalOpen(false);
+    if (!session) {
+      return; // Do nothing if session is not defined
+    }
+    console.log("CLICKED !!!",session.user.username);
+    const username = session.user.username;
+    
+    event.preventDefault()
+    const response = await fetch('/api/add-to-cart', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({user: username, component:currentComponent  }),
+    })
+    const data = await response.json()
+    if (data.error) {
+      alert(data.error)
+    } else {
+      console.log("SUCCESS");
+    console.log("CLICKED COMPONENT IS ", currentComponent.id);
+    console.log(" This is the current item, " );
+
+    
   }
+  setModalOpen(false)
+}
 
   useEffect(() => {
     console.log(session);

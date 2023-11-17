@@ -29,3 +29,4 @@ CREATE DATABASE pc;
 \i wireless_network_card.sql
 
 \i pc_parts.sql
+\i cart.sql
