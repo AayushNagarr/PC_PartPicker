@@ -4,6 +4,7 @@ import {compare} from 'bcrypt';
 import { NextResponse } from 'next/server';
 
 export const authOptions= {
+  
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -50,6 +51,31 @@ export const authOptions= {
   pages: {
     signIn: "/login",
   },
+  callbacks: {
+    async jwt({ token, user }) {
+      // If the user object is available in the response, include it in the token
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
+
+    async session({ session, token }) {
+      // If the user object is available in the token, include it in the session
+      if (token.user) {
+        session.user = token.user;
+      }
+      return session;
+    },
+
+    // async session({ session, token, user }) {
+    //   // Send properties to the client, like an access_token and user id from a provider.
+    //   console.log(user.username);
+    //   session.user.username = user.username; 
+      
+    //   return session
+    // }
+  },
 };
 
 const handler = NextAuth(authOptions)
@@ -57,46 +83,3 @@ const handler = NextAuth(authOptions)
 export { handler as GET,handler as POST}
 
   
-// import NextAuth from "next-auth"
-// import CredentialsProvider from "next-auth/providers/credentials"
-// import {compare } from 'bcrypt';
-// import pool from '../../../../lib/db';
-
-// const handler = NextAuth({
-//   session:{
-//     strategy: "jwt"
-//   },
-//   pages : {
-//     signIn: '/login',
-//   },
-//     providers: [CredentialsProvider({
-//         credentials: {
-//             username: {},
-//             password: {}
-//           },
-//           async authorize(credentials, req) {
-//             // Add logic here to look up the user from the credentials supplied
-//             const client = await pool.connect();
-//             const query = 'SELECT * FROM users WHERE username = $1';
-//             const values = [credentials?.username];
-//             const result = await client.query(query, values);
-//             const user = result.rows[0];
-
-//             const passwordCorrect = await compare(credentials?.password || '',
-//              user.password);
-
-//             console.log({passwordCorrect})
-
-//             if(passwordCorrect){
-//                 return{
-//                   id: user.id,
-//                   username: user.username,
-//                 };
-//             }
-//             client.release();
-//             return null;
-//           }
-//     })]
-// })
-
-// export {handler as GET, handler as POST}
