@@ -37,7 +37,15 @@ export default async function RootLayout({ children }) {
               </Link>
               
           }
-           {
+          { 
+            !session &&
+            
+            <Link className = "px-10" href = "/checkout">
+              CHECKOUT
+              </Link>
+              
+          }
+          {
             !session &&
             
             <Link className = "px-10" href = "/register">

@@ -13,25 +13,24 @@ const ComponentPage = () => {
   const router = useRouter(); let pathname = usePathname();
   pathname = pathname.substring(1,pathname.length);
 
-  const handleSubmitNew = async (event) => {
-    event.preventDefault()
-    const response = await fetch('/api/rest', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({  }),
-    })
-    const data = await response.json()
-    if (data.error) {
-      alert(data.error)
-    } else {
-      setComponentData([...data])
-      setIsModalOpen(false)
-    }
-  }
 
   const handleAddToCart = ()=>
   {
     console.log("In handleAddToCart");
+
+    console.log("Selected Part",currentComponent.part_name)
+    const fetchData = async () => {
+      const response = await fetch('/api/add-to-cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user:'test1', component:currentComponent }), // Send the component name as the request body
+      });
+      console.log("After fetch")
+      const data = await response.json();
+      console.log("add data",data);
+    };
     setModalOpen(false);
   }
 
@@ -66,6 +65,7 @@ const ComponentPage = () => {
  
       <Modal 
           isOpen={modalOpen} 
+          ariaHideApp={false}
           onRequestClose={() => setModalOpen(false)} 
           className="flex items-center justify-center mt-10 outline-none"
       >
