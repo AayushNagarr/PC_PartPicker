@@ -6,3 +6,9 @@ TABLE users (
   is_admin BOOLEAN NOT NULL DEFAULT FALSE);
 
 ALTER TABLE users ADD CONSTRAINT unique_username UNIQUE (username);
+
+CREATE USER 'guest' IDENTIFIED BY 'password';
+GRANT SELECT ON pc.* TO 'guest';
+
+CREATE USER 'admin' IDENTIFIED BY '20030928';
+GRANT SELECT, INSERT, UPDATE, DELETE ON pc.* TO 'user';

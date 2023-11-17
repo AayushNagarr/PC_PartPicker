@@ -20,7 +20,10 @@ const ComponentPage = () => {
   
   
   console.log("MY USERNAME IS ", session.user.username);
-  
+  const handleCheckOut = () =>
+  {
+    router.push('/checkout');
+  }
   const handleAddToCart = async ()=>
   {
     if (!session) {
@@ -79,6 +82,7 @@ const ComponentPage = () => {
   // const id = query.id;
   return (
      <div>
+      <button onClick = {handleCheckOut} className="bg-white rounded-lg w-1/5 p-10 text-black shadow-lg"> Checkout </button>
       
     {session && renderedComponents}
  

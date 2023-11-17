@@ -4,14 +4,13 @@ import pool from '../../../lib/db';
 
 export async function POST(request) {
   try {
-    const { user, component } = await request.json();
+    const { user } = await request.json();
+    console.log("In checkout route", user);
     const client = await pool.connect();
-    const insertQuery = `INSERT INTO carts (user_id, product_id, price)
-    SELECT id, ${component.id}, ${component.price}
-    FROM users
-    WHERE username = '${user}';`;
+    const insertQuery = `SELECT SUM(price) AS total_price FROM carts`;
     const  result  = await client.query(insertQuery);
     const items = result.rows;
+    console.log("checkout api result", result.rows[0]);
     client.release();
 
     return NextResponse.json(items);
